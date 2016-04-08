@@ -3,6 +3,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <unistd.h>
+#include <locale.h>
 #include "common/wpa_ctrl.h"
 
 #define MAX_NETWORK_COUNT 64
@@ -82,7 +83,7 @@ int setScanResults(struct wpa_ctrl* ctrl, pair_ssid_sl* scan_res)
         point++;
 
         //get ssid
-        for(counter = 0; (point[counter] != '\n' && point[counter]!= '\0' && point[counter]!= '\t') ; counter++)//get ssid
+        for(counter = 0; (point[counter] != '\n' && point[counter]!= '\0' && point[counter]!= '\t') && counter < MAX_SSID_LEN; counter++)
             res.ssid[counter] = point[counter];
         memcpy(&scan_res[scan_networks_count], &res, sizeof(pair_ssid_sl));
 
@@ -234,6 +235,7 @@ int runRoaming()
 
 int main()
 {
+    setlocale(LC_ALL, "Russian");
     runRoaming();
 
     return 0;
