@@ -8,7 +8,7 @@
 
 #define MAX_NETWORK_COUNT 64
 #define MAX_SSID_LEN 32
-#define BUF_SIZE 2048
+#define BUF_SIZE 8192
 #define DB_STEP 10
 
 typedef struct 
